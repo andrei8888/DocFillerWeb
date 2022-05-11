@@ -11,7 +11,7 @@ def hello_world():
     return render_template('index.html')
 
 
-UPLOAD_FOLDER = 'C:/Users/andrei/Downloads'
+UPLOAD_FOLDER = 'static/uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
