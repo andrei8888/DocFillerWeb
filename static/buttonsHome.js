@@ -23,6 +23,15 @@ function deletePicture() {
     handleButtons()
 }
 
+scanButton.addEventListener("click",showPhoto);
+function showPhoto() {
+    sourcePath="static/uploads/".concat(fileInput.value.split(/(\\|\/)/g).pop())
+    document.getElementById("photoShow").src=sourcePath;
+    document.getElementById("progressBar").style.visibility = 'inherit';
+    document.getElementById("photoShow").style.visibility = 'inherit';
+    document.getElementById("infoHome").style.visibility = 'hidden';
+}
+
 /*var form = document.getElementById("formImage");
 function handleForm(event) { event.preventDefault(); }
 form.addEventListener('submit', handleForm);

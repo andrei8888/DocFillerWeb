@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, request, flash, url_for
+from flask import Flask, render_template, request, flash, url_for, jsonify
 from werkzeug.utils import redirect, secure_filename
 
 app = Flask(__name__)
@@ -41,8 +41,7 @@ def upload_file():
     uploaded_file = request.files['image_file']
     if uploaded_file.filename != '':
         uploaded_file.save(os.path.join(app.config['UPLOAD_FOLDER'], uploaded_file.filename))
-    app.logger.info(uploaded_file.filename)
-    return redirect(url_for('scan'))
+    return render_template('home.html', filePhoto='uploads/'+uploaded_file.filename)
 
 
 if __name__ == '__main__':
