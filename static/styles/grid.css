@@ -52,3 +52,7 @@ form {
 .div4_doc { grid-area: 5 / 3 / 6 / 4; }
 .div5_doc { grid-area: 5 / 4 / 6 / 5; }
 .div6_doc { grid-area: 2 / 1 / 5 / 5; }
+
+.hidden_elem {
+    display: none;
+}

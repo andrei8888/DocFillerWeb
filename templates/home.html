@@ -18,7 +18,7 @@
                            accept="image/*"/><!--data-np-checked="1"  onChange='scanReady()'-->
                 </div>
                 <div class="div2-form mx-4">
-                    <input type="submit" class="btn btn-success" value="Scanează!" id="scaneazaPoza" onclick="showPhoto" disabled>
+                    <input type="submit" class="btn btn-success" value="Scanează!" id="scaneazaPoza" disabled>
                 </div>
             </form>
         </div>
@@ -26,18 +26,20 @@
             <button type="button" class="btn btn-danger" id="stergePoza" onclick="deletePicture" disabled>Șterge poza</button>
         </div>
         <div class="div5 mx-auto" id="infoHome">
-            <div class="alert alert-success" hidden>
+            <div class="alert alert-success" >
                 <h2>Alegeți poza cu buletinul</h2>
                 <h2>sau introduceți valorile in câmpurile alăturate</h2>
             </div>
-            <img src="#" hidden id="photoShow">
         </div>
-        <div class="div21 mx-4 my-2" >
-            <div class="progress" hidden id="progressBar">
+        <div class="div21 mx-4 hidden_elem my-2" >
+            <div class="progress"  id="progressBar">
                 <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
                      aria-valuenow="75"
                      aria-valuemin="0" aria-valuemax="100" style="width: 75%;" ></div>
             </div>
+        </div>
+        <div class="div5 sticky-top mx-auto my-2 hidden_elem">
+            <img src="#" id="photoShow">
         </div>
         <div class="div6 me-2 my-0">
             <input type="text" class="form-control" placeholder="Nume" id="nume" >
@@ -104,11 +106,15 @@
               processData: false,
             })
             e.preventDefault();
+            showPhoto();
           });
     </script>
 </body>
 </html>
-<!--<input type="text" class="form-control mb-3" placeholder="Nume" id="nume" data-np-checked="1" >
+<!--//$("#infoHome").css("visibility", "hidden");
+            //$("#progressBar").css("visibility", "visible !important");
+            //$("#photoShow").css("visibility", "visible !important");
+<input type="text" class="form-control mb-3" placeholder="Nume" id="nume" data-np-checked="1" >
             <input type="text" class="form-control mb-3" placeholder="Prenume" id="prenume" data-np-checked="1">
             <input type="text" class="form-control mb-3" placeholder="Cetățenie" id="cetatenie" data-np-checked="1" >
             <input type="text" class="form-control mb-3" placeholder="Loc naștere" id="locNastere" data-np-checked="1">

@@ -16,11 +16,6 @@ def home():
     return render_template('home.html')
 
 
-@app.route('/scan', methods=['GET', 'POST'])
-def scan():
-    return render_template('scan.html')
-
-
 @app.route('/doc')
 def doc():
     return render_template('doc.html')

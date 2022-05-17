@@ -19,17 +19,35 @@ function handleButtons(){
 
 deleteImageButton.addEventListener("click",deletePicture);
 function deletePicture() {
+    document.getElementById("infoHome").style.visibility = 'visible';
+    var elems = document.getElementsByClassName("hidden_elem");
+    for(var i=0;i<elems.length;i+=1) {
+        elems[i].style.display = 'none'
+    }
     fileInput.value = "";
-    handleButtons()
+    handleButtons();
+
+    document.getElementById("photoShow").src="#";
 }
 
-scanButton.addEventListener("click",showPhoto);
 function showPhoto() {
+    document.getElementById("infoHome").style.visibility = 'hidden';
+    var elems = document.getElementsByClassName("hidden_elem");
+    for(var i=0;i<elems.length;i+=1) {
+        elems[i].style.display = 'block'
+    }
+    sleep(100);
     sourcePath="static/uploads/".concat(fileInput.value.split(/(\\|\/)/g).pop())
     document.getElementById("photoShow").src=sourcePath;
-    document.getElementById("progressBar").style.visibility = 'inherit';
-    document.getElementById("photoShow").style.visibility = 'inherit';
-    document.getElementById("infoHome").style.visibility = 'hidden';
+}
+
+
+function sleep(milliseconds) {
+  const date = Date.now();
+  let currentDate = null;
+  do {
+    currentDate = Date.now();
+  } while (currentDate - date < milliseconds);
 }
 
 /*var form = document.getElementById("formImage");
