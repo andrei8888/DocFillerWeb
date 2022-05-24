@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>DocFiller</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/grid.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/bootstrap_lux.css') }}">
+</head>
+<body style="background-color:#e8f3fc;">
+    <div class="parent_home">
+        <div class="div1 my-3">
+            <h1>DocFiller</h1>
+        </div>
+        <div class="div2" id="formDivId">
+            <form action="" name="formPhoto" enctype=multipart/form-data>
+                <div class="div1-form mx-4">
+                    <input id="uploadPhoto" class="form-control mx-3" type="file" name="image_file"
+                           accept="image/*"/><!--data-np-checked="1"  onChange='scanReady()'-->
+                </div>
+                <div class="div2-form mx-4">
+                    <input type="submit" class="btn btn-success" value="Scanează!" id="scaneazaPoza" disabled>
+                </div>
+            </form>
+        </div>
+        <div class="div3 mx-auto">
+            <button type="button" class="btn btn-danger" id="stergePoza" onclick="deletePicture" disabled>Șterge poza</button>
+        </div>
+        <div class="div5 mx-auto" id="infoHome">
+            <div class="alert alert-success" >
+                <h2>Alegeți poza cu buletinul</h2>
+                <h2>sau introduceți valorile in câmpurile alăturate</h2>
+            </div>
+        </div>
+        <div class="div21 mx-4 hidden_elem my-2" >
+            <div class="progress"  id="progressBar">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                     aria-valuenow="75"
+                     aria-valuemin="0" aria-valuemax="100" style="width: 75%;" ></div>
+            </div>
+        </div>
+        <div class="div5 sticky-top mx-auto my-2 hidden_elem">
+            <img src="#" id="photoShow">
+        </div>
+        <form ></form>
+        <div class="div6 me-2 my-0">
+            <input type="text" class="form-control infos" placeholder="Nume" id="nume" >
+        </div>
+        <div class="div7 me-2 my-0">
+            <input type="text" class="form-control infos" placeholder="Prenume" id="prenume" >
+        </div>
+        <div class="div8 me-2 my-0">
+            <input type="text" class="form-control infos" placeholder="Cetățenie" id="cetatenie" >
+        </div>
+        <div class="div9 me-2 my-0">
+            <input type="text" class="form-control infos" placeholder="Loc naștere" id="locNastere" >
+        </div>
+        <div class="div10 me-2 my-0">
+            <textarea class="form-control infos" placeholder="Domiciliu" id="domiciliu"  cols="40" rows="2" style="overflow:auto"></textarea>
+        </div>
+        <div class="div11 me-2 my-0">
+            <input type="text" class="form-control infos" placeholder="Emisă de" id="emis" >
+        </div>
+        <div class="div12 me-2 my-0">
+            <input type="text" class="form-control infos" placeholder="Seria"  maxlength="2" size="1"  id="seria" >
+        </div>
+        <div class="div13 me-2 my-0">
+            <input type="text" class="form-control infos" placeholder="Nr" id="nr" >
+        </div>
+        <div class="div14 me-2 my-0">
+            <input type="text" class="form-control infos" placeholder="CNP" id="cnp" >
+        </div>
+        <div class="div15 me-2 my-0">
+            <input type="text" class="form-control infos" placeholder="Sex" id="sex" >
+        </div>
+        <div class="div16 me-2 my-0">
+            <input type="text" class="form-control infos" placeholder="Data Naștere" id="dataNastere" >
+        </div>
+        <div class="div17 mx-auto">
+            <button type="button" class="btn btn-light disabled">Înapoi</button>
+        </div>
+        <div class="div18 mx-auto">
+            <button type="button" class="btn btn-success" id="saveButton">Salvează informațiile</button>
+        </div>
+        <div class="div19 mx-auto">
+            <button type="button" class="btn btn-danger" id="deleteInfoButton">Șterge informațiile</button>
+        </div>
+        <div class="div20 mx-auto">
+            <a href="{{ url_for('doc') }}"><button type="button" class="btn btn-primary">Înainte →</button></a>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{{url_for('static', filename='buttonsHome.js')}}"></script>
+</body>
+</html>
