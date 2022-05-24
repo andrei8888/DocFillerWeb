@@ -13,3 +13,4 @@ dist/
 build/
 *.egg-info/
 static/uploads/
+tests/.cache

@@ -1,7 +1,7 @@
 import os
-
 from flask import Flask, render_template, request, flash, url_for, jsonify, json
 from werkzeug.utils import redirect, secure_filename
+import informations
 
 app = Flask(__name__)
 
@@ -40,9 +40,10 @@ def upload_file():
 
 
 @app.route('/home/info', methods=['POST'])
-def get_info():
+def get_info_from_web():
     infos = request.json
     app.logger.info(infos)
+    informations.set_informations(infos)
     return render_template('home.html')
 
 
