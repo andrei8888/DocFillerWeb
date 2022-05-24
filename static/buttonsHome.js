@@ -26,7 +26,7 @@ function deletePicture() {
     }
     fileInput.value = "";
     handleButtons();
-
+    deleteInformations()
     document.getElementById("photoShow").src="#";
 }
 
@@ -42,21 +42,67 @@ function showPhoto() {
 }
 
 
+deleteInfoButton=document.getElementById("deleteInfoButton");
+deleteInfoButton.addEventListener("click",deleteInformations);
+function deleteInformations(e) {
+    var elems = document.getElementsByClassName("infos");
+    for(var i=0;i<elems.length;i+=1) {
+        elems[i].value = ''
+    }
+    saveInformations(e);
+}
+
+
+saveButton=document.getElementById("saveButton");
+saveButton.addEventListener("click", saveInformations);
+function saveInformations(e) {
+    var url=window.location.pathname;
+    var infoData = new FormData();
+    var infoData = {
+        nume: $("#nume").val(),
+        prenume: $("#prenume").val(),
+        cetatenie: $("#cetatenie").val(),
+        domiciliu: $("#domiciliu").val(),
+        emis: $("#emis").val(),
+        seria: $("#seria").val(),
+        nr: $("#nr").val(),
+        cnp: $("#cnp").val(),
+        sex: $("#sex").val(),
+        dataNastere: $("#dataNastere").val(),
+    };
+    //console.log(infoData);
+    $.ajax({
+        method : "POST",
+        url: "/home/info",
+        data: JSON.stringify(infoData),
+        contentType: "application/json; charset=utf-8",
+        processData: false,
+    });
+    e.preventDefault();
+}
+
+
+$("#scaneazaPoza").click(function(e) {
+    var form_data = new FormData();
+    var files = $('#uploadPhoto')[0].files;
+    if(files.length > 0 ){
+        form_data.append("image_file",files[0]);
+    }
+    $.ajax({
+      method : "POST",
+      url: "/home/photoUpload",
+      data: form_data,
+      contentType: false,
+      processData: false,
+    })
+    e.preventDefault();
+    showPhoto();
+});
+
 function sleep(milliseconds) {
-  const date = Date.now();
-  let currentDate = null;
-  do {
-    currentDate = Date.now();
-  } while (currentDate - date < milliseconds);
+    const date = Date.now();
+    let currentDate = null;
+    do {
+        currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
 }
-
-/*var form = document.getElementById("formImage");
-function handleForm(event) { event.preventDefault(); }
-form.addEventListener('submit', handleForm);
-
-function doScan(event) {
-      event.preventDefault();
-      document.getElementById("formImage").submit();
-}
-
-*/
