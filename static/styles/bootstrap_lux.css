@@ -333,6 +333,10 @@ th {
   border-width: 0;
 }
 
+td {
+  text-align: center;
+}
+
 label {
   display: inline-block;
 }

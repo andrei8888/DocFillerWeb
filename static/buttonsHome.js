@@ -83,6 +83,8 @@ function saveInformations(e) {
 
 
 $("#scaneazaPoza").click(function(e) {
+  var progressBar = document.getElementById("scanProgressBar");
+  progressBar.style.width = "0".concat("%");
     var form_data = new FormData();
     var files = $('#uploadPhoto')[0].files;
     if(files.length > 0 ){
@@ -97,7 +99,22 @@ $("#scaneazaPoza").click(function(e) {
     })
     e.preventDefault();
     showPhoto();
+    updateProgressBar();
 });
+
+function updateProgressBar() {
+  var progressBar = document.getElementById("scanProgressBar");
+  var width = 1;
+  var identity = setInterval(scene, 10);
+  function scene() {
+    if (width >= 100) {
+      clearInterval(identity);
+    } else {
+      width++;
+      progressBar.style.width = width + '%';
+    }
+  }
+}
 
 function sleep(milliseconds) {
     const date = Date.now();
