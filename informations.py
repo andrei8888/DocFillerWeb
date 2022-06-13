@@ -8,7 +8,8 @@ person_informations = {
     "nr": "",
     "cnp": "",
     "sex": "",
-    "dataNastere": ""
+    "dataNastere": "",
+    "dataEliberare": ""
 }
 
 
@@ -22,3 +23,8 @@ def set_informations(infos):
     person_informations['cnp'] = infos['cnp']
     person_informations['sex'] = infos['sex']
     person_informations['dataNastere'] = infos['dataNastere']
+
+
+other_infos = {
+    "": ""
+}

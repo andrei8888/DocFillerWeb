@@ -8,7 +8,7 @@ pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files/Tesseract-OCR/tesserac
 
 tessdata_dir_config = '--tessdata-dir "C:/Program Files/Tesseract-OCR/tessdata"'
 
-img = cv2.imread('C:/Users/andrei/Documents/licenta/resources_lic/smn.jpg', cv2.IMREAD_GRAYSCALE)
+img = cv2.imread('C:/Users/andrei/Documents/licenta/DocFillerWeb/static/docs/Cerere de acordare concediu de odihna.PNG', cv2.IMREAD_GRAYSCALE)
 th = cv2.threshold(img, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
 cv2.imshow("s", th)  #
 print(pytesseract.image_to_string(img, lang='ron'))

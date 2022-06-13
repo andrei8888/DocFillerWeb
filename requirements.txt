@@ -24,3 +24,6 @@ pytest-cov==2.4.0
 # OCR and image-proc
 pytesseract==0.3.9
 opencv-python==4.5.5.64
+
+#Doc
+python-docx==0.8.11

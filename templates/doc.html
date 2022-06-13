@@ -21,26 +21,40 @@
                 </thead>
                 <tbody>
                     <tr class="table-success">
+                        {%for i in range(0, len)%}
                         <td>
                             <div class="form-check">
-                                <label class="form-check-label">Cerere de acordare concediu de odihna</label>
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <div id="docLabel{{i}}">
+                                    <label class="form-check-label">{{docs[i]}}</label>
+                                </div>
                             </div>
-                        </td>
-                        <td>
-                            <div class="form-check">
-                                <label class="form-check-label" for="flexCheckDefault2">Cerere de acordare concediu de odihna</label>
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2">
+                            <div id="thumbnailModal{{i}}" class="modal">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">{{ docs[i] }}</h4>
+                                            <button type="button" class="btn-close closeModalBtn" data-bs-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true"></span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img class="center-fit" src="{{url_for('static', filename='docs/'+docs[i]+'.PNG')}}">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <!--<button type="button" class="btn btn-light">Anterioara</button>
+                                            <button type="button" class="btn btn-primary">Următoarea →</button>-->
+                                            <button type="button" class="btn btn-secondary closeModalBtn" data-bs-dismiss="modal">Închide</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                            <!--<div id="thumbnailModal{{i}}" class="modal">
+                                <span class="close">&times;</span>
+                                <img class="center-fit" src="{{url_for('static', filename='docs/'+docs[i]+'.PNG')}}">
+                            </div>-->
                         </td>
-                        <td>Cerere de acordare concediu de odihna</td>
-                        <td>Cerere de acordare concediu de odihna</td>
-                    </tr>
-                    <tr class="table-success">
-                        <td>Cerere de acordare concediu de odihna</td>
-                        <td>Cerere de acordare concediu de odihna</td>
-                        <td>Cerere de acordare concediu de odihna</td>
-                        <td>Cerere 8</td>
+                        {%endfor%}
                     </tr>
                 </tbody>
             </table>
@@ -49,14 +63,20 @@
             <a href="{{ url_for('home') }}"><button type="button" class="btn btn-light">Înapoi</button></a>
         </div>
         <div class="div3_doc mx-auto">
-            <button type="button" class="btn btn-dark">Selectează toate</button>
+            <button type="button" class="btn btn-dark" id="selectAllButton">Selectează toate</button>
         </div>
         <div class="div4_doc mx-auto">
-            <button type="button" class="btn btn-light">Deselectează toate</button>
+            <button type="button" class="btn btn-light" id="unselectAllButton">Deselectează toate</button>
         </div>
         <div class="div5_doc mx-auto">
-            <button type="button" class="btn btn-primary">Înainte →</button>
+            <a href="static/uploads/docs_completed/Documente_completate.zip">
+                <button type="button" class="btn btn-primary">Descarca &#8595;</button>
+            </a>
         </div>
     </div>
+    <script src="{{url_for('static', filename='documents.js')}}"></script>
+    <script>
+        docButtons({{len}});
+    </script>
 </body>
 </html>

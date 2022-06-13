@@ -1,16 +1,14 @@
 import os
 from flask import Flask, render_template, request, flash, url_for, jsonify, json
 from werkzeug.utils import redirect, secure_filename
+
+import fetch_docs
 import informations
 
 app = Flask(__name__)
 
 
 @app.route('/')
-def go_to_home():
-    return redirect(url_for('home'))
-
-
 @app.route('/home')
 def home():
     return render_template('home.html')
@@ -18,7 +16,8 @@ def home():
 
 @app.route('/doc')
 def doc():
-    return render_template('doc.html')
+    docs, docs_number = fetch_docs.fetch_titles_and_number()
+    return render_template('doc.html', len=docs_number, docs=docs)
 
 
 UPLOAD_FOLDER = 'static/uploads'
