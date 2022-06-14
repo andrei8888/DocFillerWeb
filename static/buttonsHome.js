@@ -62,6 +62,7 @@ function saveInformations(e) {
         nume: $("#nume").val(),
         prenume: $("#prenume").val(),
         cetatenie: $("#cetatenie").val(),
+        locNastere: $("#locNastere").val(),
         domiciliu: $("#domiciliu").val(),
         emis: $("#emis").val(),
         seria: $("#seria").val(),
@@ -70,7 +71,6 @@ function saveInformations(e) {
         sex: $("#sex").val(),
         dataNastere: $("#dataNastere").val(),
     };
-    //console.log(infoData);
     $.ajax({
         method : "POST",
         url: "/home/info",
@@ -83,8 +83,10 @@ function saveInformations(e) {
 
 
 $("#scaneazaPoza").click(function(e) {
-  var progressBar = document.getElementById("scanProgressBar");
-  progressBar.style.width = "0".concat("%");
+    deleteInformations(event);
+    sleep(1000);
+    var progressBar = document.getElementById("scanProgressBar");
+    progressBar.style.width = "0".concat("%");
     var form_data = new FormData();
     var files = $('#uploadPhoto')[0].files;
     if(files.length > 0 ){
@@ -100,6 +102,12 @@ $("#scaneazaPoza").click(function(e) {
     e.preventDefault();
     showPhoto();
     updateProgressBar();
+
+    //const jsonData= require('uploads/saved_infos/infos.json');
+    sleep(1500);
+    var jqxhr = $.getJSON( 'static/uploads/saved_infos/infos.json', function(infos) {
+        setInfos(infos);
+    });
 });
 
 function updateProgressBar() {
@@ -114,6 +122,20 @@ function updateProgressBar() {
       progressBar.style.width = width + '%';
     }
   }
+}
+
+function setInfos(infos) {
+    document.getElementById("nume").value = infos.nume;
+    document.getElementById("prenume").value = infos.prenume;
+    document.getElementById("cetatenie").value = infos.cetatenie;
+    document.getElementById("locNastere").value = infos.locNastere;
+    document.getElementById("domiciliu").value = infos.domiciliu;
+    document.getElementById("emis").value = infos.emis;
+    document.getElementById("seria").value = infos.seria;
+    document.getElementById("nr").value = infos.nr;
+    document.getElementById("cnp").value = infos.cnp;
+    document.getElementById("sex").value = infos.sex;
+    document.getElementById("dataNastere").value = infos.dataNastere;
 }
 
 function sleep(milliseconds) {
