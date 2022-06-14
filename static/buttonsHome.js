@@ -102,8 +102,6 @@ $("#scaneazaPoza").click(function(e) {
     e.preventDefault();
     showPhoto();
     updateProgressBar();
-
-    //const jsonData= require('uploads/saved_infos/infos.json');
     sleep(1500);
     var jqxhr = $.getJSON( 'static/uploads/saved_infos/infos.json', function(infos) {
         setInfos(infos);

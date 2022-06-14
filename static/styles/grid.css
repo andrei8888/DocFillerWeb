@@ -66,3 +66,16 @@ form {
   -ms-transition: none !important;
   transition: none !important;
 }
+
+.parent_down {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.div1_down { grid-area: 1 / 1 / 2 / 6; margin: auto; text-align: center; }
+.div2_down { grid-area: 2 / 1 / 3 / 6; }
+.div3_down { grid-area: 5 / 1 / 6 / 2; }
+.div4_down { grid-area: 5 / 5 / 6 / 6; }

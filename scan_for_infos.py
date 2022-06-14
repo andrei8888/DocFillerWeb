@@ -88,7 +88,7 @@ def get_infos_from_string(text):
             person_informations["locNastere"] = text_as_array[index+1].strip()
             continue
         if similar(line, SIM_domiciliu) > 0.7:
-            person_informations["domiciliu"] = text_as_array[index+1].strip() + "\\n" + text_as_array[index+2].strip()
+            person_informations["domiciliu"] = text_as_array[index+1].strip() + '\n' + text_as_array[index+2].strip()
             continue
         if similar(line, SIM_emis_line) > 0.5:
             if PAT_dataEliberare.search(text_as_array[index+1]):

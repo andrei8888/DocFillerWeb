@@ -1,5 +1,6 @@
 import os
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
+from werkzeug.utils import redirect
 
 import fetch_docs
 import informations
@@ -20,6 +21,11 @@ def home():
 def doc():
     docs, docs_number = fetch_docs.fetch_titles_and_number()
     return render_template('doc.html', len=docs_number, docs=docs)
+
+
+@app.route('/down')
+def down():
+    return render_template('down.html')
 
 
 UPLOAD_FOLDER = 'static/uploads'
@@ -48,6 +54,14 @@ def get_info_from_web():
     informations.set_informations(infos)
     informations.save_json()
     return render_template('home.html')
+
+
+@app.route('/doc/next', methods=['POST'])
+def prepare_docs():
+    fetch_docs.clean_docs_completed()
+    docs = request.get_json()
+    fetch_docs.manage_documents(docs)
+    return redirect(url_for("down"))
 
 
 if __name__ == '__main__':

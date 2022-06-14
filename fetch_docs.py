@@ -4,6 +4,7 @@ import shutil
 
 from docx import Document
 
+import informations
 
 DOCS_PATH = "static/docs/"
 DOCS_TEMPLATES_PATH = DOCS_PATH + "doc_templates/"
@@ -15,7 +16,7 @@ FINAL_ZIP_NAME_EXT = FINAL_ZIP_NAME + ".zip"
 def fetch_titles_and_number():
     list_docs = [os.path.splitext(filename)[0] for filename in os.listdir(DOCS_PATH) if
                  os.path.isfile(os.path.join(DOCS_PATH, filename))]
-    #print(list_docs)
+    # print(list_docs)
     return list_docs, len(list_docs)
 
 
@@ -48,30 +49,23 @@ def replace_with_infos(doc_obj, infos):
 
 
 def manage_doc_and_save(doc_name, infos):
-    # os.remove()
     curr_doc = Document(DOCS_PATH + "/doc_templates/" + doc_name)
     replace_with_infos(curr_doc, infos)
     curr_doc.save(DOCS_UPLOAD_PATH + doc_name)
-
-
-infosr = {
-    "nume": "Bulai",
-    "prenume": "Prenume",
-    "cetatenie": "",
-    "domiciliu": "",
-    "emis": "",
-    "seria": "VS",
-    "nr": "810199",
-    "cnp": "1990223375492",
-    "sex": "",
-    "dataNastere": "",
-    "dataEliberare": ""
-}
-manage_doc_and_save(r"Cerere pentru eliberarea certificatului de cazier judiciar pentru persoana fizică.docx", infosr)
 
 
 def make_zip():
     shutil.make_archive(FINAL_ZIP_NAME, 'zip', DOCS_UPLOAD_PATH)
     shutil.move(FINAL_ZIP_NAME_EXT, DOCS_UPLOAD_PATH + FINAL_ZIP_NAME_EXT)
 
-make_zip()
+
+def clean_docs_completed():
+    for f in os.listdir(DOCS_UPLOAD_PATH):
+        os.remove(os.path.join(DOCS_UPLOAD_PATH, f))
+
+
+def manage_documents(docs):
+    for doc_title in docs.values():
+        manage_doc_and_save(doc_title + ".docx", informations.person_informations)
+
+    make_zip()

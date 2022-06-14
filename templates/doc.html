@@ -24,7 +24,7 @@
                         {%for i in range(0, len)%}
                         <td>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault{{i}}">
                                 <div id="docLabel{{i}}">
                                     <label class="form-check-label">{{docs[i]}}</label>
                                 </div>
@@ -42,17 +42,11 @@
                                             <img class="center-fit" src="{{url_for('static', filename='docs/'+docs[i]+'.PNG')}}">
                                         </div>
                                         <div class="modal-footer">
-                                            <!--<button type="button" class="btn btn-light">Anterioara</button>
-                                            <button type="button" class="btn btn-primary">Următoarea →</button>-->
                                             <button type="button" class="btn btn-secondary closeModalBtn" data-bs-dismiss="modal">Închide</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!--<div id="thumbnailModal{{i}}" class="modal">
-                                <span class="close">&times;</span>
-                                <img class="center-fit" src="{{url_for('static', filename='docs/'+docs[i]+'.PNG')}}">
-                            </div>-->
                         </td>
                         {%endfor%}
                     </tr>
@@ -68,12 +62,14 @@
         <div class="div4_doc mx-auto">
             <button type="button" class="btn btn-light" id="unselectAllButton">Deselectează toate</button>
         </div>
-        <div class="div5_doc mx-auto">
-            <a href="static/uploads/docs_completed/Documente_completate.zip">
-                <button type="button" class="btn btn-primary">Descarca &#8595;</button>
+        <div class="div5_doc mx-auto" id="inainte">
+            <a href="{{ url_for('down') }}">
+                <button type="button" class="btn btn-primary">Înainte →</button>
             </a>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{url_for('static', filename='documents.js')}}"></script>
     <script>
         docButtons({{len}});

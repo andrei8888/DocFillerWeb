@@ -38,3 +38,27 @@ function unselectAll() {
     for (const selectDoc of selectDocs)
         selectDoc.checked = false;
 }
+
+function getSelected() {
+    selectedDocs=[]
+    selectDocs = document.getElementsByClassName("form-check-input");
+        for (const selectDoc of selectDocs)
+            if(selectDoc.checked == true) {
+                selectedDocs.push(document.getElementById("docLabel"+selectDoc.id.slice(-1)).getElementsByClassName("form-check-label")[0].textContent)
+            }
+    var map = {};
+    for(doc in selectedDocs) {
+        map[doc] = selectedDocs[doc];
+    }
+    return map;
+}
+
+document.getElementById("inainte").addEventListener("click", next);
+function next(){
+    $.ajax({
+        type: "POST",
+        data: JSON.stringify(getSelected()),
+        url: "/doc/next",
+        contentType: "application/json; charset=utf-8"
+    });
+}
