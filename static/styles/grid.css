@@ -10,6 +10,7 @@
 /*text-align: center;*/
 .div2 { grid-area: 2 / 1 / 3 / 5; }
 .div3 { grid-area: 2 / 4 / 3 / 5; }
+.div22 { grid-area: 2 / 5 / 3 / 6; }
 .div4 { grid-area: 2 / 5 / 3 / 6; }
 .div21 { grid-area: 3 / 1 / 4 / 5; }
 .div5 { grid-area: 4 / 1 / 14 / 5; }
@@ -54,6 +55,10 @@ form {
 .div6_doc { grid-area: 2 / 1 / 5 / 5; }
 
 .hidden_elem {
+    display: none;
+}
+
+.hidden_info {
     display: none;
 }
 

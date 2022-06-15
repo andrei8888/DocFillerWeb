@@ -19,19 +19,30 @@
                            accept="image/*"/>
                 </div>
                 <div class="div2-form mx-4">
-                    <button type="button" class="btn btn-success" id="scaneazaPoza" onclick="deletePicture" disabled>
+                    <button type="button" class="btn btn-success" id="scaneazaPoza" disabled>
                         Scanează!
                     </button>
                 </div>
             </form>
         </div>
         <div class="div3 mx-auto">
-            <button type="button" class="btn btn-danger" id="stergePoza" onclick="deletePicture" disabled>Șterge poza</button>
+            <button type="button" class="btn btn-danger" id="stergePoza" disabled>Șterge poza</button>
         </div>
         <div class="div5 mx-auto" id="infoHome">
             <div class="alert alert-success" >
                 <h2>Alegeți poza cu buletinul</h2>
                 <h2>sau introduceți valorile in câmpurile alăturate</h2>
+            </div>
+        </div>
+        <div class="div22 me-2 my-0">
+            <div class="alert alert-success hidden_info" id="saveSuccess">
+                <strong>Informațiile au fost salvate cu succes!</strong>
+            </div>
+            <div class="alert alert-danger hidden_info" id="saveError">
+                <strong>Informațiile nu sunt valide!</strong>
+            </div>
+            <div class="alert alert-info" id="saveEmpty">
+                <strong>Nu există informații salvate</strong>
             </div>
         </div>
         <div class="div21 mx-4 hidden_elem my-2" >

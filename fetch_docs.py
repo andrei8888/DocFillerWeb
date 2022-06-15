@@ -1,6 +1,7 @@
 import os
 import re
 import shutil
+from datetime import date
 
 from docx import Document
 
@@ -30,22 +31,25 @@ def docx_replace_regex(doc_obj, regex, replace):
                     inline[i].text = text
 
 
-# info_tags = re.compile(
-#    r"\{(nume)|(prenume)|(cetatenie)|(domiciliu)|(emis)|(seria)|(nr)|(cnp)|(sex)|(dataNastere)|(dataEliberare)}")
+def get_current_date():
+    return date.today().strftime("%d.%m.%Y")
 
 
 def replace_with_infos(doc_obj, infos):
-    docx_replace_regex(doc_obj, re.compile(r"@nume"), infos["nume"])
-    docx_replace_regex(doc_obj, re.compile(r"prenume"), infos["prenume"])
-    docx_replace_regex(doc_obj, re.compile(r"cetatenie"), infos["cetatenie"])
-    docx_replace_regex(doc_obj, re.compile(r"domiciliu"), infos["domiciliu"])
-    docx_replace_regex(doc_obj, re.compile(r"emis"), infos["emis"])
-    docx_replace_regex(doc_obj, re.compile(r"seria"), infos["seria"])
-    docx_replace_regex(doc_obj, re.compile(r"nr"), infos["nr"])
-    docx_replace_regex(doc_obj, re.compile(r"cnp"), infos["cnp"])
-    docx_replace_regex(doc_obj, re.compile(r"sex"), infos["sex"])
-    docx_replace_regex(doc_obj, re.compile(r"dataNastere"), infos["dataNastere"])
-    docx_replace_regex(doc_obj, re.compile(r"dataEliberare"), infos["dataEliberare"])
+    id_char = "@"
+    docx_replace_regex(doc_obj, re.compile(id_char+"nume"), infos["nume"])
+    docx_replace_regex(doc_obj, re.compile(id_char+"prenume"), infos["prenume"])
+    docx_replace_regex(doc_obj, re.compile(id_char+"cetatenie"), infos["cetatenie"])
+    docx_replace_regex(doc_obj, re.compile(id_char+"locNastere"), infos["locNastere"])
+    docx_replace_regex(doc_obj, re.compile(id_char+"domiciliu"), infos["domiciliu"].replace("\n", " "))
+    docx_replace_regex(doc_obj, re.compile(id_char+"emis"), infos["emis"])
+    docx_replace_regex(doc_obj, re.compile(id_char+"seria"), infos["seria"])
+    docx_replace_regex(doc_obj, re.compile(id_char+"nr"), infos["nr"])
+    docx_replace_regex(doc_obj, re.compile(id_char+"cnp"), infos["cnp"])
+    docx_replace_regex(doc_obj, re.compile(id_char+"sex"), infos["sex"])
+    docx_replace_regex(doc_obj, re.compile(id_char+"dataNastere"), infos["dataNastere"])
+    docx_replace_regex(doc_obj, re.compile(id_char+"dataEliberare"), infos["dataEliberare"])
+    docx_replace_regex(doc_obj, re.compile(id_char+"dataCurenta"), get_current_date())
 
 
 def manage_doc_and_save(doc_name, infos):

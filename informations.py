@@ -44,10 +44,6 @@ def reset():
     person_informations['dataNastere'] = ""
 
 
-other_infos = {
-    "": ""
-}
-
 JSON_FILE = "static/uploads/saved_infos/infos.json"
 
 
