@@ -37,18 +37,9 @@ def get_current_date():
 
 def replace_with_infos(doc_obj, infos):
     id_char = "@"
-    docx_replace_regex(doc_obj, re.compile(id_char+"nume"), infos["nume"])
-    docx_replace_regex(doc_obj, re.compile(id_char+"prenume"), infos["prenume"])
-    docx_replace_regex(doc_obj, re.compile(id_char+"cetatenie"), infos["cetatenie"])
-    docx_replace_regex(doc_obj, re.compile(id_char+"locNastere"), infos["locNastere"])
-    docx_replace_regex(doc_obj, re.compile(id_char+"domiciliu"), infos["domiciliu"].replace("\n", " "))
-    docx_replace_regex(doc_obj, re.compile(id_char+"emis"), infos["emis"])
-    docx_replace_regex(doc_obj, re.compile(id_char+"seria"), infos["seria"])
-    docx_replace_regex(doc_obj, re.compile(id_char+"nr"), infos["nr"])
-    docx_replace_regex(doc_obj, re.compile(id_char+"cnp"), infos["cnp"])
-    docx_replace_regex(doc_obj, re.compile(id_char+"sex"), infos["sex"])
-    docx_replace_regex(doc_obj, re.compile(id_char+"dataNastere"), infos["dataNastere"])
-    docx_replace_regex(doc_obj, re.compile(id_char+"dataEliberare"), infos["dataEliberare"])
+    infos["domiciliu"] = infos["domiciliu"].replace("\n", " ")
+    for tipInfo in infos.keys():
+        docx_replace_regex(doc_obj, re.compile(id_char+tipInfo), infos[tipInfo])
     docx_replace_regex(doc_obj, re.compile(id_char+"dataCurenta"), get_current_date())
 
 

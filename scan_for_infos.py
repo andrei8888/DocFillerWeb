@@ -1,5 +1,6 @@
 import os
 import re
+from datetime import datetime
 from difflib import SequenceMatcher
 
 import process
@@ -39,10 +40,10 @@ SIM_cetatenie = "Cetatenie/Nationalite/Nationality"
 SIM_locNastere = "Loc nastere/Lieu de naissance/Place of birth Sex/Sexe/Sex"
 SIM_domiciliu = "Domiciliu/Adresse/Adress"
 SIM_emis_line = "Emisa de/Deliveree par/Issued by"
-PAT_dataEliberare = re.compile("( (([0-2]\d)|(3[0-1]))\.((0[1-9])|(1[0-2]))\.(\d\d)|([0-2]\d))-")
+PAT_dataEliberare = re.compile(" ([\d. ]*-)")
 PAT_dataNastere = re.compile("-((([0-2]\d)|(3[0-1]))\.((0[1-9])|(1[0-2]))\.((19\d\d)|(20[0-2]\d)))")
 PAT_data_line = re.compile("(( (([0-2]\d)|(3[0-1]))\.((0[1-9])|(1[0-2]))\.(\d\d)|([0-2]\d))-((([0-2]\d)|(3[0-1]))\.((0[1-9])|(1[0-2]))\.((19\d\d)|(20[0-2]\d))))")
-
+PAT_emis = re.compile("[-a-zăîșțâA-ZĂÎȘȚÂ ]*")
 
 def get_infos_from_string(text):
     text_as_array = text.splitlines()
@@ -74,6 +75,7 @@ def get_infos_from_string(text):
                 person_informations["sex"] = "Masculin"
             else:
                 person_informations["sex"] = "Feminin"
+            person_informations["dataNastere"] = datetime.strptime(person_informations["cnp"][1:7], "%y%m%d").strftime("%d.%m.%Y")
             continue
         if similar(line, SIM_nume) > 0.7:
             person_informations["nume"] = text_as_array[index+1].strip()
@@ -91,12 +93,8 @@ def get_infos_from_string(text):
             person_informations["domiciliu"] = text_as_array[index+1].strip() + '\n' + text_as_array[index+2].strip()
             continue
         if similar(line, SIM_emis_line) > 0.5:
-            if PAT_dataEliberare.search(text_as_array[index+1]):
-                person_informations["dataEliberare"] = PAT_dataEliberare.search(text_as_array[index+1]).group().strip()[:-1]
-            if PAT_dataNastere.search(text_as_array[index+1]):
-                person_informations["dataNastere"] = PAT_dataNastere.search(text_as_array[index+1]).group().strip()[1:]
-            if PAT_data_line.search(text_as_array[index+1]):
-                person_informations["emis"] = text_as_array[index+1][:PAT_data_line.search(text_as_array[index+1]).start()].strip()
+            person_informations["emis"] = PAT_emis.search(text_as_array[index+1]).group()
+            person_informations["dataEliberare"] = PAT_dataEliberare.search(text_as_array[index+1]).group().strip()[:-1]
             continue
     return person_informations
 
