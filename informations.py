@@ -28,6 +28,7 @@ def set_informations(infos):
     person_informations['cnp'] = infos['cnp']
     person_informations['sex'] = infos['sex']
     person_informations['dataNastere'] = infos['dataNastere']
+    person_informations['dataEliberare'] = infos['dataEliberare']
 
 
 def reset():

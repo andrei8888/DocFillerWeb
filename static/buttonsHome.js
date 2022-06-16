@@ -74,6 +74,7 @@ function saveInformations(e) {
             cnp: $("#cnp").val(),
             sex: $("#sex").val(),
             dataNastere: $("#dataNastere").val(),
+            dataEliberare: $("#dataEliberare").val(),
         };
         $.ajax({
             method : "POST",
@@ -167,6 +168,7 @@ function setInfos(infos) {
     document.getElementById("cnp").value = infos.cnp;
     document.getElementById("sex").value = infos.sex;
     document.getElementById("dataNastere").value = infos.dataNastere;
+    document.getElementById("dataEliberare").value = infos.dataEliberare;
 }
 
 function sleep(milliseconds) {
@@ -180,14 +182,15 @@ function sleep(milliseconds) {
 var RE_nume = new RegExp("^[A-ZĂÎȘȚÂ]{3,}");
 var RE_prenume = new RegExp("^[-A-ZĂÎȘȚÂ']{3,}$");
 var RE_cetatenie = new RegExp("^[A-ZĂÎȘȚÂa-zăîșțâ]{3,} \/ [A-Z]{3}$");
-var RE_locNastere = new RegExp("^Jud.[A-Z]{1,2} Mun.[A-ZĂÎȘȚÂa-zăîșțâ]{3,}$");
-var RE_domiciliu = new RegExp("^Jud.[A-Z]{1,2} Mun.[A-ZĂÎȘȚÂa-zăîșțâ]{3,}\n[A-ZĂÎȘȚÂa-zăîșțâ0-9. ]{3,}$");
+var RE_locNastere = new RegExp("^Jud.[A-Z]{1,2} Mun.[-A-ZĂÎȘȚÂa-zăîșțâ]{3,}$");
+var RE_domiciliu = new RegExp("^Jud.[A-Z]{1,2} Mun.[-A-ZĂÎȘȚÂa-zăîșțâ]{3,}\n[A-ZĂÎȘȚÂa-zăîșțâ0-9. ]{3,}$");
 var RE_emis = new RegExp("^[-A-ZĂÎȘȚÂa-zăîșțâ. ]{3,}$");
 var RE_seria = new RegExp("^[A-Z]{1,2}$");
 var RE_nr = new RegExp("^\\d{6}$");
 var RE_cnp = new RegExp("^\\d{13}$");
 var RE_sex = new RegExp("^(Masculin)|(Feminin)$");
 var RE_dataNastere = new RegExp("^((([0-2]\\d)|(3[0-1]))\\.((0[1-9])|(1[0-2]))\\.((19\\d\\d)|(20[0-2]\\d)))$");
+var RE_dataEliberare = new RegExp("^((([0-2]\\d)|(3[0-1]))\\.((0[1-9])|(1[0-2]))\\.((\\d\\d)))$");
 
 
 function checkInfos() {
@@ -202,7 +205,8 @@ function checkInfos() {
         (RE_nr.test($("#nr").val())) &&
         (RE_cnp.test($("#cnp").val())) &&
         (RE_sex.test($("#sex").val())) &&
-        (RE_dataNastere.test($("#dataNastere").val()));
+        (RE_dataNastere.test($("#dataNastere").val())) &&
+        (RE_dataEliberare.test($("#dataEliberare").val()));
     return good;
 }
 
@@ -216,7 +220,8 @@ function emptyInfos() {
         $("#nr").val() === "" &&
         $("#cnp").val() === "" &&
         $("#sex").val() === "" &&
-        $("#dataNastere").val() === "";
+        $("#dataNastere").val() === "" &&
+        $("#dataEliberare").val() ==="";
 }
 
 function showWhichError() {
@@ -264,6 +269,10 @@ function showWhichError() {
         document.getElementById("dataNastere").classList.add("is-valid");
     else
         document.getElementById("dataNastere").classList.add("is-invalid");
+    if(RE_dataEliberare.test($("#dataEliberare").val()))
+        document.getElementById("dataEliberare").classList.add("is-valid");
+    else
+        document.getElementById("dataEliberare").classList.add("is-invalid");
 }
 
 function allInfosGood() {
