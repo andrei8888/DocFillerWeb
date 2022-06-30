@@ -179,15 +179,15 @@ function sleep(milliseconds) {
     } while (currentDate - date < milliseconds);
 }
 
-var RE_nume = new RegExp("^[A-ZĂÎȘȚÂ]{3,}");
+var RE_nume = new RegExp("^[-A-ZĂÎȘȚÂ]{3,}");
 var RE_prenume = new RegExp("^[-A-ZĂÎȘȚÂ']{3,}$");
 var RE_cetatenie = new RegExp("^[A-ZĂÎȘȚÂa-zăîșțâ]{3,} \/ [A-Z]{3}$");
 var RE_locNastere = new RegExp("^Jud.[A-Z]{1,2} Mun.[-A-ZĂÎȘȚÂa-zăîșțâ]{3,}$");
 var RE_domiciliu = new RegExp("^Jud.[A-Z]{1,2} Mun.[-A-ZĂÎȘȚÂa-zăîșțâ]{3,}\n[A-ZĂÎȘȚÂa-zăîșțâ0-9. ]{3,}$");
 var RE_emis = new RegExp("^[-A-ZĂÎȘȚÂa-zăîșțâ. ]{3,}$");
-var RE_seria = new RegExp("^[A-Z]{1,2}$");
+var RE_seria = new RegExp("^[A-Z]{2}$");
 var RE_nr = new RegExp("^\\d{6}$");
-var RE_cnp = new RegExp("^\\d{13}$");
+var RE_cnp = new RegExp("^[1-8]\\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\\d|3[01])(0[1-9]|[1-4]\\d|5[0-2]|99)(00[1-9]|0[1-9]\\d|[1-9]\\d\\d)\\d$");
 var RE_sex = new RegExp("^(Masculin)|(Feminin)$");
 var RE_dataNastere = new RegExp("^((([0-2]\\d)|(3[0-1]))\\.((0[1-9])|(1[0-2]))\\.((19\\d\\d)|(20[0-2]\\d)))$");
 var RE_dataEliberare = new RegExp("^((([0-2]\\d)|(3[0-1]))\\.((0[1-9])|(1[0-2]))\\.((\\d\\d)))$");

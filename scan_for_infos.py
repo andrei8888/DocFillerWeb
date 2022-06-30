@@ -32,8 +32,9 @@ def similar(a, b):
 PAT_serie_nr = re.compile(r"^.* [A-Z]{2} .* \d{6} .*$")
 PAT_serie = re.compile(" (B|[A-Z]{2}) ")
 PAT_nr = re.compile(" \d{6} ")
-PAT_cnp_line = re.compile("(.* [1-8]\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])(0[1-9]|[1-4]\d|5[0-2]|99)(00[1-9]|0[1-9]\d|[1-9]\d\d)\d)")
-PAT_cnp = re.compile("[1-8]\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])(0[1-9]|[1-4]\d|5[0-2]|99)(00[1-9]|0[1-9]\d|[1-9]\d\d)\d")
+SIM_cnp = "CNP"
+PAT_cnp_line = re.compile("(.* \d{7,})")
+PAT_cnp = re.compile("\d{7,}")
 SIM_nume = "Nume/Nom/Last name"
 SIM_prenume = "Prenume/Prenom/First name"
 SIM_cetatenie = "Cetatenie/Nationalite/Nationality"
@@ -44,6 +45,7 @@ PAT_dataEliberare = re.compile(" ([\d. ]*-)")
 PAT_dataNastere = re.compile("-((([0-2]\d)|(3[0-1]))\.((0[1-9])|(1[0-2]))\.((19\d\d)|(20[0-2]\d)))")
 PAT_data_line = re.compile("(( (([0-2]\d)|(3[0-1]))\.((0[1-9])|(1[0-2]))\.(\d\d)|([0-2]\d))-((([0-2]\d)|(3[0-1]))\.((0[1-9])|(1[0-2]))\.((19\d\d)|(20[0-2]\d))))")
 PAT_emis = re.compile("[-a-zăîșțâA-ZĂÎȘȚÂ ]*")
+
 
 def get_infos_from_string(text):
     text_as_array = text.splitlines()
