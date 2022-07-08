@@ -83,6 +83,19 @@ function saveInformations(e) {
             contentType: "application/json; charset=utf-8",
             processData: false,
         });
+
+        var formSignature = new FormData();
+        var fileSignature = $('#uploadSignature')[0].files;
+        if(fileSignature.length > 0 ){
+            formSignature.append("imageSignature",fileSignature[0]);
+        }
+        $.ajax({
+          method : "POST",
+          url: "/home/photoSignature",
+          data: formSignature,
+          contentType: false,
+          processData: false,
+        })
         e.preventDefault();
         if(!emptyInfos()) {
             saveSuccessInfo.style.display="block";
@@ -290,3 +303,9 @@ function removeValidClasses() {
         elems[i].classList.remove("is-valid");
     }
 }
+
+
+$("#uploadSignature").change(function() {
+  filename = this.files[0].name;
+  document.getElementById("fileSignature").innerHTML = "Semnătură: " + filename;
+});

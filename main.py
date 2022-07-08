@@ -56,6 +56,15 @@ def get_info_from_web():
     return render_template('home.html')
 
 
+@app.route('/home/photoSignature', methods=['POST'])
+def get_sign_from_web():
+    uploaded_signature = request.files['imageSignature']
+    if uploaded_signature.filename != '':
+        uploaded_signature.save(os.path.join(app.config['UPLOAD_FOLDER'], uploaded_signature.filename))
+    informations.signature_file = uploaded_signature.filename
+    return render_template('home.html')
+
+
 @app.route('/doc/next', methods=['POST'])
 def prepare_docs():
     fetch_docs.clean_docs_completed()

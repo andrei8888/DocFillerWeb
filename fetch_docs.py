@@ -4,6 +4,7 @@ import shutil
 from datetime import date
 
 from docx import Document
+from docx.shared import Inches
 
 import informations
 
@@ -31,6 +32,17 @@ def docx_replace_regex(doc_obj, regex, replace):
                     inline[i].text = text
 
 
+def docx_replace_text_with_image(doc_obj, regex):
+    for p in doc_obj.paragraphs:
+        if regex.search(p.text):
+            inline = p.runs
+            for i in range(len(inline)):
+                if regex.search(inline[i].text):
+                    text = regex.sub("", inline[i].text)
+                    inline[i].text = text
+                    inline[i].add_picture(f'{"static/uploads/"+informations.signature_file}', width=Inches(1), height=Inches(0.5))
+
+
 def get_current_date():
     return date.today().strftime("%d.%m.%Y")
 
@@ -41,6 +53,7 @@ def replace_with_infos(doc_obj, infos):
     for tipInfo in infos.keys():
         docx_replace_regex(doc_obj, re.compile(id_char+tipInfo), infos[tipInfo])
     docx_replace_regex(doc_obj, re.compile(id_char+"dataCurenta"), get_current_date())
+    docx_replace_text_with_image(doc_obj, re.compile(id_char + "semnatura"))
 
 
 def manage_doc_and_save(doc_name, infos):

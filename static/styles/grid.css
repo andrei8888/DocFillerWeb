@@ -1,7 +1,7 @@
 .parent_home {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(15, 1fr);
+    grid-template-rows: repeat(16, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
 }
@@ -25,11 +25,12 @@
 .div14 { grid-area: 11 / 5 / 12 / 6; }
 .div15 { grid-area: 12 / 5 / 13 / 6; }
 .div16 { grid-area: 13 / 5 / 14 / 6; }
-.div17 { grid-area: 15 / 1 / 16 / 2; }
-.div18 { grid-area: 15 / 2 / 16 / 4; }
-.div19 { grid-area: 15 / 4 / 16 / 5; }
-.div20 { grid-area: 15 / 5 / 16 / 6; }
+.div17 { grid-area: 16 / 1 / 17 / 2; }
+.div18 { grid-area: 16 / 2 / 17 / 4; }
+.div19 { grid-area: 16 / 4 / 17 / 5; }
+.div20 { grid-area: 16 / 5 / 17 / 6; }
 .div23 { grid-area: 14 / 5 / 14 / 6; }
+.div24 { grid-area: 15 / 5 / 15 / 6; }
 
 form {
     display: grid;

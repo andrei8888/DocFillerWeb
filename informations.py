@@ -51,3 +51,6 @@ JSON_FILE = "static/uploads/saved_infos/infos.json"
 def save_json():
     with open(JSON_FILE, 'w') as fp:
         json.dump(person_informations, fp)
+
+
+signature_file = ""
