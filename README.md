@@ -5,3 +5,22 @@ DocFiller lets you add the informations for a person, either manually or by appl
 
 !Important! DocFiller is only a simulation app and includes only a selection of documents to be completed. It is not suited as a reliable way of actually filling the documents.
 
+![](./images/p1.png)
+
+Home page
+
+![](./images/p2.png)
+
+Choosing image and get data through OCR
+
+![](./images/p3.png)
+
+Each field has rules, the validation failed in this case and user cannot go to the next step
+
+![](./images/p4.png)
+
+Choosing desired documents
+
+![](./images/p5.png)
+
+Download page
