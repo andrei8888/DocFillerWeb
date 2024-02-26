@@ -19,8 +19,12 @@ Each field has rules, the validation failed in this case and user cannot go to t
 
 ![](./images/p4.png)
 
-Choosing desired documents
+Validation succesful
 
 ![](./images/p5.png)
 
-Download page
+Choosing desired documents
+
+![](./images/p6.png)
+
+Donwload page
