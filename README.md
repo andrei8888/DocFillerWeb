@@ -27,4 +27,4 @@ Choosing desired documents
 
 ![](./images/p6.png)
 
-Donwload page
+Download page
